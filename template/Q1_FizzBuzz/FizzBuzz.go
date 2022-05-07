@@ -9,14 +9,18 @@ func main(){
         str := ""
 
         // ここから記述
-        
-        if (i % 15 == 0){
+
+        if i % 15 == 0 {
+          // 15で割り切れる場合
           str = "FizzBuzz"
-        }else if (i % 5 == 0){
+        } else if i % 5 == 0 {
+          // 5で割り切れる場合
           str = "Buzz"
-        }else if (i % 3 == 0){
+        } else if i % 3 == 0 {
+          // 3で割り切れる場合
           str = "Fizz"
-        }else {
+        } else {
+          // それ以外の数の場合
           str = strconv.Itoa(i)
         }
 

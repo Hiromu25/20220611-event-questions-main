@@ -22,24 +22,25 @@ func serchIndex(sortedArray []int, targetNumber int) int {
     searchStart := 0
     searchEnd := len(sortedArray) - 1
     for {
-        if (searchStart == searchEnd){
+        if searchStart == searchEnd {
             // 配列の長さが1のとき
-            if (targetNumber == sortedArray[searchStart]){
+            if sortedArray[searchStart] == targetNumber {
                 return searchStart
-            }else {
+            } else {
                 break
             }
         }else {
             // 探索対象配列の中間のindexを取得
             center := getCenter(sortedArray[searchStart:searchEnd]) + searchStart
-            if (sortedArray[center] == targetNumber){
+
+            if sortedArray[center] == targetNumber {
                 // 中間値と一致した場合
                 return center
-            }else if (sortedArray[center] < targetNumber){
+            } else if sortedArray[center] < targetNumber {
                 // 中間値よりも探索対象の方が大きい場合
                 // 探索対象配列の先頭indexを更新
                 searchStart = center + 1
-            }else if (sortedArray[center] > targetNumber){
+            } else if sortedArray[center] > targetNumber {
                 // 中間値よりも探索対象の方が小さい場合
                 // 探索対象配列の末尾indexを更新
                 searchEnd = center - 1
@@ -57,7 +58,7 @@ func serchIndex(sortedArray []int, targetNumber int) int {
 // 配列の中間のindexを返す関数
 // 配列の長さが偶数長の場合，前半の長さ = 後半の長さ+1になるようにする
 // ex) 配列の長さが8のときはindex=4を返すようにする
-func getCenter(Array []int) int {
-    len := len(Array)
+func getCenter(array []int) int {
+    len := len(array)
     return len/2
 }
