@@ -19,13 +19,13 @@ func serchIndex(sortedArray []int, targetNumber int) int {
     // ここから記述
 
     // 探索対象配列のindexを変数で指定
-    searchStart := 0
-    searchEnd := len(sortedArray) - 1
+    searchHead := 0
+    searchTail := len(sortedArray) - 1
     for {
-        if searchStart == searchEnd {
+        if searchHead == searchTail {
             // 配列の長さが1のとき
-            if sortedArray[searchStart] == targetNumber {
-                return searchStart
+            if sortedArray[searchHead] == targetNumber {
+                return searchHead
             } else {
                 break
             }
@@ -33,7 +33,7 @@ func serchIndex(sortedArray []int, targetNumber int) int {
             // 探索対象配列の中間のindexを取得
             // 配列の長さが偶数長の場合，前半の長さ = 後半の長さ+1になるようにする
             // ex) 配列の長さが8のときは中間のindexは4
-            center := len(sortedArray[searchStart:searchEnd])/2 + searchStart
+            center := len(sortedArray[searchHead:searchTail])/2 + searchHead
 
             if sortedArray[center] == targetNumber {
                 // 中間値と一致した場合
@@ -41,11 +41,11 @@ func serchIndex(sortedArray []int, targetNumber int) int {
             } else if sortedArray[center] < targetNumber {
                 // 中間値よりも探索対象の方が大きい場合
                 // 探索対象配列の先頭indexを更新
-                searchStart = center + 1
+                searchHead = center + 1
             } else if sortedArray[center] > targetNumber {
                 // 中間値よりも探索対象の方が小さい場合
                 // 探索対象配列の末尾indexを更新
-                searchEnd = center - 1
+                searchTail = center - 1
             }
         }
 
