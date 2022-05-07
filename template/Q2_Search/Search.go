@@ -1,5 +1,8 @@
 package main
-import "fmt"
+
+import (
+	"fmt"
+)
 func main(){
     // 昇順にソートされた配列
     sortedArray := []int{1, 2, 3, 5, 12, 7890, 12345}
@@ -15,9 +18,46 @@ func serchIndex(sortedArray []int, targetNumber int) int {
 
     // ここから記述
 
+    // 探索対象配列のindexを変数で指定
+    searchStart := 0
+    searchEnd := len(sortedArray) - 1
+    for {
+        if (searchStart == searchEnd){
+            // 配列の長さが1のとき
+            if (targetNumber == sortedArray[searchStart]){
+                return searchStart
+            }else {
+                break
+            }
+        }else {
+            // 探索対象配列の中間のindexを取得
+            center := getCenter(sortedArray[searchStart:searchEnd]) + searchStart
+            if (sortedArray[center] == targetNumber){
+                // 中間値と一致した場合
+                return center
+            }else if (sortedArray[center] < targetNumber){
+                // 中間値よりも探索対象の方が大きい場合
+                // 探索対象配列の先頭indexを更新
+                searchStart = center + 1
+            }else if (sortedArray[center] > targetNumber){
+                // 中間値よりも探索対象の方が小さい場合
+                // 探索対象配列の末尾indexを更新
+                searchEnd = center - 1
+            }
+        }
+
+    }
 
     // ここまで記述
 
     // 探索対象が存在しない場合、-1を返却
     return -1
+}
+
+// 配列の中間のindexを返す関数
+// 配列の長さが偶数長の場合，前半の長さ = 後半の長さ+1になるようにする
+// ex) 配列の長さが8のときはindex=4を返すようにする
+func getCenter(Array []int) int {
+    len := len(Array)
+    return len/2
 }
