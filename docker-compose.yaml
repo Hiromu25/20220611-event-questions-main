@@ -1,0 +1,12 @@
+version: '3'
+services:
+    go:
+        build: .
+        container_name: go
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./template:/template
+
+volumes:
+    go_path:
